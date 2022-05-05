@@ -22,6 +22,11 @@ Route::get('/users', 'App\Http\Controllers\AdminController@user')->name('users.a
 
 Route::get('/deleteUser/{id}', 'App\Http\Controllers\AdminController@deleteUser');
 
+Route::get('/foodmenu', 'App\Http\Controllers\AdminController@foodmenu');
+
+Route::post('/uploadfood', 'App\Http\Controllers\AdminController@uploadFood')->name('admin.uploadfood');
+
+
 
 Route::middleware([
     'auth:sanctum',
