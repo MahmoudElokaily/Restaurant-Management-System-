@@ -20,7 +20,8 @@ class AdminController extends Controller
     }
 
     public function foodmenu(){
-        return view('admin.foodmenu');
+        $foods = Food::all();
+        return view('admin.foodmenu' , compact('foods'));
     }
     public function uploadFood(Request $request){
         $data = new Food;
@@ -34,5 +35,29 @@ class AdminController extends Controller
         $data->save();
         return redirect()->back();
 
+    }
+
+    public function deletFood($food_id){
+        $food = Food::find($food_id);
+        $food->delete();
+        return redirect()->back();
+    }
+
+    public function updateFood($food_id){
+        $food = Food::find($food_id);
+        return view('admin.updateView' , compact('food'));
+    }
+
+    public function update(Request $request , $food_id){
+        $food = Food::find($food_id);
+        $image = $request->image;
+        $imagename = time().'.'.$image->getClientOriginalExtension();
+        $request->image->move('foodimage' , $imagename);
+        $food->image = $imagename;
+        $food ->title = $request->title;
+        $food ->price = $request->price;
+        $food ->description = $request->des;
+        $food->save();
+        return redirect()->back();
     }
 }

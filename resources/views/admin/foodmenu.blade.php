@@ -47,6 +47,32 @@
             </div>
 
         </form>
+
+        <div>
+            <table bgcolor="black">
+                <tr>
+                    <th style="padding: 30px;">Food Name</th>
+                    <th style="padding: 30px;">Price</th>
+                    <th style="padding: 30px;">Description</th>
+                    <th style="padding: 30px;">Image</th>
+                    <th style="padding: 30px;">Action</th>
+                    <th style="padding: 30px;">Action2</th>
+                </tr>
+                @if(isset($foods) && $foods->count() > 0)
+                    @foreach($foods as $food)
+                        <tr align="center">
+                            <td>{{$food->title}}</td>
+                            <td>{{$food->price}}</td>
+                            <td>{{$food->description}}</td>
+                            <td><img style="height: 200px;width: 200px;" src="/foodimage/{{$food->image}}" alt="food image"></td>
+                            <td><a href="{{route('admin.deleteFood' , $food->id)}}">Delete</a></td>
+                            <td><a href="{{route('admin.updateFood' , $food->id)}}">Update</a></td>
+                        </tr>
+                    @endforeach
+                @endif
+            </table>
+        </div>
+
     </div>
 </div>
 

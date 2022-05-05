@@ -26,6 +26,10 @@ Route::get('/foodmenu', 'App\Http\Controllers\AdminController@foodmenu');
 
 Route::post('/uploadfood', 'App\Http\Controllers\AdminController@uploadFood')->name('admin.uploadfood');
 
+Route::get('/deletefood/{id}' , 'App\Http\Controllers\AdminController@deletFood')->name('admin.deleteFood');
+Route::get('/updatefood/{id}' , 'App\Http\Controllers\AdminController@updateFood')->name('admin.updateFood');
+Route::post('/update/{id}' , 'App\Http\Controllers\AdminController@update')->name('admin.update');
+
 
 
 Route::middleware([
